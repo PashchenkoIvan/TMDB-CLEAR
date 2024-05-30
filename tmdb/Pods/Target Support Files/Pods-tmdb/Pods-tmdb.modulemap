@@ -1,0 +1,6 @@
+module Pods_tmdb {
+  umbrella header "Pods-tmdb-umbrella.h"
+
+  export *
+  module * { export * }
+}

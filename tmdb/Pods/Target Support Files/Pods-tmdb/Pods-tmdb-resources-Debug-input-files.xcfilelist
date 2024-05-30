@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-tmdb/Pods-tmdb-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager/IQKeyboardManager.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.bundle
