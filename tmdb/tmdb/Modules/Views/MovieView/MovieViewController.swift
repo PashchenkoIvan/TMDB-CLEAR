@@ -76,10 +76,7 @@ class MovieViewController: UIViewController {
         } else {
             print("This movie is already in favorite list")
         }
-        
     }
-    
-    
 }
 
 
