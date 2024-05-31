@@ -83,5 +83,18 @@ extension GenresViewController: UICollectionViewDataSource {
 }
 
 extension GenresViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Получаем данные о фильме, связанные с выбранной ячейкой
+        let movie = movieList[indexPath.row]
+        
+        // Создаем экземпляр MovieViewController
+        let movieViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieViewController") as! MovieViewController
+        
+        // Передаем данные о фильме в MovieViewController
+        movieViewController.movie = movie
+        
+        // Открываем MovieViewController
+        self.navigationController?.pushViewController(movieViewController, animated: true)
+    }
+
 }
