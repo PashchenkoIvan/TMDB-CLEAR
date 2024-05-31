@@ -13,6 +13,7 @@ enum DefaultValues {
         return ProcessInfo.processInfo.environment["api_key"]
     }
     static let defaultUrl: String = "https://api.themoviedb.org/3/"
+    static let defaultImageUrl: String = "https://image.tmdb.org/t/p/original"
 }
 
 //Data type for selecting the request address
