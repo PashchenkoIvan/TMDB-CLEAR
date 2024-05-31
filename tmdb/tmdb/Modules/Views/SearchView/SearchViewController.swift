@@ -59,11 +59,6 @@ extension SearchViewController: UITableViewDataSource {
             return cell
         }
     }
-
-
-
-    
-    
 }
 
 extension SearchViewController: UITableViewDelegate {
