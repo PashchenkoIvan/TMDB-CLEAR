@@ -28,14 +28,22 @@ class MovieViewController: UIViewController {
             return
         }
         
-        let url = URL(string: "\(DefaultValues.defaultImageUrl)\(movieData.backdrop_path!)")
+        if let path = movieData.backdrop_path {
+            let url = URL(string: "\(DefaultValues.defaultImageUrl)\(path)")
+            let placeholder = UIImage(named: "404")
+            movieImage.kf.setImage(with: url, placeholder: placeholder)
+        } else {
+            movieImage.image = UIImage(named: "404")
+            print("Error: backdrop_path is nil")
+        }
+
         
-        movieImage.kf.setImage(with: url)
-        movieTitle.text = movieData.title
-        vote_average.text = "\(movieData.vote_average!)"
-        vote_count.text = "\(movieData.vote_count!)"
-        movieDescription.text = movieData.overview
-        date.text = movieData.release_date
+//        movieImage.kf.setImage(with: url)
+        movieTitle.text = movieData.title ?? "error"
+        vote_average.text = "\(movieData.vote_average ?? 0)"
+        vote_count.text = "\(movieData.vote_count ?? 0)"
+        movieDescription.text = movieData.overview ?? "error"
+        date.text = movieData.release_date ?? "0"
         
         navigationController?.topViewController?.title = movieData.title
         

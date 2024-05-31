@@ -61,7 +61,7 @@ extension FavoritesViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell", for: indexPath)
             
             cell.selectionStyle = .none
-            cell.textLabel?.text = "Ничего не найдено"
+            cell.textLabel?.text = "Not found"
             
             return cell
         } else {
