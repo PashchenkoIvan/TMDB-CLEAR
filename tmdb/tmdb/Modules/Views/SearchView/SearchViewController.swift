@@ -39,7 +39,7 @@ extension SearchViewController: UITableViewDataSource {
         if resultData.isEmpty {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell", for: indexPath)
             cell.selectionStyle = .none
-            cell.textLabel?.text = "Ничего не найдено"
+            cell.textLabel?.text = "Not found"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
