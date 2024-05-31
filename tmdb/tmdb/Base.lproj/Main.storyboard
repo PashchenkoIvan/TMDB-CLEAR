@@ -171,17 +171,36 @@
             </objects>
             <point key="canvasLocation" x="3034.3511450381679" y="-2.1126760563380285"/>
         </scene>
-        <!--View Controller-->
+        <!--Favorites View Controller-->
         <scene sceneID="msX-xi-ImK">
             <objects>
-                <viewController id="6oa-dq-SEJ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoritesViewController" id="6oa-dq-SEJ" customClass="FavoritesViewController" customModule="tmdb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GyJ-yi-5wa">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="E8I-z2-auC">
+                                <rect key="frame" x="0.0" y="56" width="393" height="747"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="6oa-dq-SEJ" id="GdP-Nq-kyJ"/>
+                                    <outlet property="delegate" destination="6oa-dq-SEJ" id="NrD-tQ-CK9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="WlP-75-5j5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="E8I-z2-auC" firstAttribute="leading" secondItem="WlP-75-5j5" secondAttribute="leading" id="RXI-ex-1Ut"/>
+                            <constraint firstItem="WlP-75-5j5" firstAttribute="bottom" secondItem="E8I-z2-auC" secondAttribute="bottom" id="gez-np-bdR"/>
+                            <constraint firstItem="WlP-75-5j5" firstAttribute="trailing" secondItem="E8I-z2-auC" secondAttribute="trailing" id="hvi-iT-E6S"/>
+                            <constraint firstItem="E8I-z2-auC" firstAttribute="top" secondItem="WlP-75-5j5" secondAttribute="top" id="sEn-Bz-Oio"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iU3-km-bzP"/>
+                    <connections>
+                        <outlet property="tableView" destination="E8I-z2-auC" id="4cl-Tr-B8D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8sv-Oo-9ca" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
