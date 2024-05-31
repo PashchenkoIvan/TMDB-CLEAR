@@ -54,7 +54,7 @@ extension SearchViewController: UITableViewDataSource {
                 cell.cellImageView.image = UIImage(named: "imageNotFound")
             }
             
-            cell.setTitle(title: resultData[indexPath.row].title ?? "Название неизвестно")
+            cell.setTitle(title: resultData[indexPath.row].title ?? "No one movie with this name")
             
             return cell
         }

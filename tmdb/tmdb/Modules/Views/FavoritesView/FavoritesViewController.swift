@@ -77,7 +77,7 @@ extension FavoritesViewController: UITableViewDataSource {
                 cell.cellImageView.image = UIImage(named: "imageNotFound")
             }
             
-            cell.setTitle(title: movieList[indexPath.row].title ?? "Название неизвестно")
+            cell.setTitle(title: movieList[indexPath.row].title ?? "No one movie with this name")
             
             return cell
         }
