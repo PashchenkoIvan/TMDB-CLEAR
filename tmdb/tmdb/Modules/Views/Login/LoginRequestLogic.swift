@@ -22,6 +22,7 @@ class RequestsStaticClass {
             //In case of successful completion request
             switch FRresponce {
             case .success(let result):
+                print(result)
                 
                 //|POST| Authorization token request together with login and password
                 RequestClass.request(address: .CreateRequestToken, params: .CreateRequestTokenParam(.init(requestType: .post, username: username, password: password, requestToken: result.request_token))) { (SRresponce: Result<RequestTokenStruct, Error>) in
@@ -29,6 +30,8 @@ class RequestsStaticClass {
                     //In case of successful completion request
                     switch SRresponce {
                     case .success(let result):
+                        print(result)
+                        print("")
                         
                         //|POST| Creting session token
                         RequestClass.request(address: .CreateSessionId, params: .CreateSessionIdParam(.init(requestType: .post, requestToken: result.request_token))) { (Sresponce:Result<SessionIdStruct, Error>) in
@@ -36,15 +39,18 @@ class RequestsStaticClass {
                             //In case of successful completion request
                             switch Sresponce {
                             case .success(let result):
+                                print(result)
+                                print("")
                                 
                                 session_id = result.session_id
                                 
                                 //|GET| Getting user information
-                                RequestClass.request(address: .GetUserInfo, params: .GetUserInfoParam(.init(requestType: .get, sessionId: result.session_id))) { (UIresponce:Result<UserDataStruct, Error>) in
+                                RequestClass.request(address: .GetUserInfo, params: .GetUserInfoParam(.init(requestType: .get, sessionId: result.session_id))) { (UIresponce:Result<UserStruct, Error>) in
                                     
                                     //In case of successful completion request
                                     switch UIresponce {
                                     case .success(let result):
+                                        print(result)
                                         
                                         completion(.success(ReturnUserDataStruct(session_id: session_id, user_data: result)))
                                     case .failure(let error):

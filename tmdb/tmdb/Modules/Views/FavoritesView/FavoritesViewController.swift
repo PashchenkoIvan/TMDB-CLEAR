@@ -30,7 +30,7 @@ class FavoritesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             
-            var page: Int = 1
+            let page: Int = 1
             
             RequestClass.request(address: .GetFavoriteMovies, params: .GetFavoriteMoviesParam(.init(requestType: .get, sessionId: userData!.session_id, sort_by: "created_at.asc", page: page, language: "en-US", account_id: userData!.user_data.id))) { (responce: Result<FavoritesStruct, Error>) in
                 
