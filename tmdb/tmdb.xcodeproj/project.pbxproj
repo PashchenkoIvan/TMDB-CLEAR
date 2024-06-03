@@ -12,13 +12,10 @@
 		630AF4242C060697007FF5FE /* RequestParamsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630AF4232C060697007FF5FE /* RequestParamsStruct.swift */; };
 		630D64CB2C060AC200C7B64D /* GenresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D64CA2C060AC200C7B64D /* GenresViewController.swift */; };
 		630D64CE2C060EFB00C7B64D /* LoginRequestLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D64CD2C060EFB00C7B64D /* LoginRequestLogic.swift */; };
-		630D64D62C060FDE00C7B64D /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D64D02C060FDE00C7B64D /* Avatar.swift */; };
-		630D64D72C060FDE00C7B64D /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D64D12C060FDE00C7B64D /* Gravatar.swift */; };
-		630D64D82C060FDE00C7B64D /* ReturnUserDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D64D22C060FDE00C7B64D /* ReturnUserDataStruct.swift */; };
-		630D64D92C060FDE00C7B64D /* Tmdb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D64D32C060FDE00C7B64D /* Tmdb.swift */; };
-		630D64DA2C060FDE00C7B64D /* UserDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D64D42C060FDE00C7B64D /* UserDataStruct.swift */; };
 		630D64DD2C07A68100C7B64D /* RequestTokenStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D64DB2C07A68100C7B64D /* RequestTokenStruct.swift */; };
 		630D64E02C07A6C400C7B64D /* SessionIdStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D64DE2C07A6C400C7B64D /* SessionIdStruct.swift */; };
+		631153582C0E55AF00B93A77 /* UserStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631153572C0E55AF00B93A77 /* UserStruct.swift */; };
+		6311535A2C0E56EB00B93A77 /* ResultUserDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631153592C0E56EB00B93A77 /* ResultUserDataStruct.swift */; };
 		6383EDC22C0930A500CEA716 /* StaticMethodsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383EDC12C0930A500CEA716 /* StaticMethodsClass.swift */; };
 		6383EDC42C0931AE00CEA716 /* TrendingMovieStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383EDC32C0931AE00CEA716 /* TrendingMovieStruct.swift */; };
 		6383EDC82C0931D100CEA716 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383EDC52C0931D100CEA716 /* Movie.swift */; };
@@ -49,13 +46,10 @@
 		630AF4232C060697007FF5FE /* RequestParamsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParamsStruct.swift; sourceTree = "<group>"; };
 		630D64CA2C060AC200C7B64D /* GenresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresViewController.swift; sourceTree = "<group>"; };
 		630D64CD2C060EFB00C7B64D /* LoginRequestLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestLogic.swift; sourceTree = "<group>"; };
-		630D64D02C060FDE00C7B64D /* Avatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
-		630D64D12C060FDE00C7B64D /* Gravatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gravatar.swift; sourceTree = "<group>"; };
-		630D64D22C060FDE00C7B64D /* ReturnUserDataStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnUserDataStruct.swift; sourceTree = "<group>"; };
-		630D64D32C060FDE00C7B64D /* Tmdb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tmdb.swift; sourceTree = "<group>"; };
-		630D64D42C060FDE00C7B64D /* UserDataStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataStruct.swift; sourceTree = "<group>"; };
 		630D64DB2C07A68100C7B64D /* RequestTokenStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTokenStruct.swift; sourceTree = "<group>"; };
 		630D64DE2C07A6C400C7B64D /* SessionIdStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionIdStruct.swift; sourceTree = "<group>"; };
+		631153572C0E55AF00B93A77 /* UserStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStruct.swift; sourceTree = "<group>"; };
+		631153592C0E56EB00B93A77 /* ResultUserDataStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultUserDataStruct.swift; sourceTree = "<group>"; };
 		6383EDC12C0930A500CEA716 /* StaticMethodsClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticMethodsClass.swift; sourceTree = "<group>"; };
 		6383EDC32C0931AE00CEA716 /* TrendingMovieStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingMovieStruct.swift; sourceTree = "<group>"; };
 		6383EDC52C0931D100CEA716 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -166,11 +160,8 @@
 		630D64D52C060FDE00C7B64D /* UserDataStruct */ = {
 			isa = PBXGroup;
 			children = (
-				630D64D02C060FDE00C7B64D /* Avatar.swift */,
-				630D64D12C060FDE00C7B64D /* Gravatar.swift */,
-				630D64D22C060FDE00C7B64D /* ReturnUserDataStruct.swift */,
-				630D64D32C060FDE00C7B64D /* Tmdb.swift */,
-				630D64D42C060FDE00C7B64D /* UserDataStruct.swift */,
+				631153572C0E55AF00B93A77 /* UserStruct.swift */,
+				631153592C0E56EB00B93A77 /* ResultUserDataStruct.swift */,
 			);
 			path = UserDataStruct;
 			sourceTree = "<group>";
@@ -421,7 +412,6 @@
 			files = (
 				6383EDE12C095DFF00CEA716 /* FavoritesViewController.swift in Sources */,
 				630D64CB2C060AC200C7B64D /* GenresViewController.swift in Sources */,
-				630D64DA2C060FDE00C7B64D /* UserDataStruct.swift in Sources */,
 				6383EDD12C0948A100CEA716 /* AddFavoriteMovieStruct.swift in Sources */,
 				6383EDC22C0930A500CEA716 /* StaticMethodsClass.swift in Sources */,
 				630D64CE2C060EFB00C7B64D /* LoginRequestLogic.swift in Sources */,
@@ -429,6 +419,7 @@
 				630AF4212C060456007FF5FE /* RequestClass.swift in Sources */,
 				63B56AAF2C060277003271A9 /* LoginViewController.swift in Sources */,
 				6383EDC92C0931D100CEA716 /* MovieListResponce.swift in Sources */,
+				6311535A2C0E56EB00B93A77 /* ResultUserDataStruct.swift in Sources */,
 				630D64DD2C07A68100C7B64D /* RequestTokenStruct.swift in Sources */,
 				630D64E02C07A6C400C7B64D /* SessionIdStruct.swift in Sources */,
 				6383EDCB2C09381200CEA716 /* CollectionViewCell.swift in Sources */,
@@ -437,13 +428,10 @@
 				630AF4242C060697007FF5FE /* RequestParamsStruct.swift in Sources */,
 				6383EDD82C0952B700CEA716 /* FavoritesStruct.swift in Sources */,
 				63B56AAB2C060277003271A9 /* AppDelegate.swift in Sources */,
-				630D64D62C060FDE00C7B64D /* Avatar.swift in Sources */,
+				631153582C0E55AF00B93A77 /* UserStruct.swift in Sources */,
 				6383EDD92C0952B700CEA716 /* Results.swift in Sources */,
 				6383EDDE2C09556200CEA716 /* SearchTableViewCell.swift in Sources */,
-				630D64D82C060FDE00C7B64D /* ReturnUserDataStruct.swift in Sources */,
 				63B56AAD2C060277003271A9 /* SceneDelegate.swift in Sources */,
-				630D64D72C060FDE00C7B64D /* Gravatar.swift in Sources */,
-				630D64D92C060FDE00C7B64D /* Tmdb.swift in Sources */,
 				6383EDC82C0931D100CEA716 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
