@@ -41,10 +41,10 @@ struct GetUserInfoParams {
 struct GetFavoritesParams {
     let requestType: Alamofire.HTTPMethod
     let sessionId: String
-    let sort_by: String
+    let sortBy: String
     let page: Int
     let language: String
-    let account_id: Int
+    let accountId: Int
 }
 
 struct GetMoviesTrendparams {
@@ -54,10 +54,10 @@ struct GetMoviesTrendparams {
 
 struct AddMovieParams {
     let requestType: Alamofire.HTTPMethod
-    let account_id: Int
-    let session_id: String
-    let media_type: String
-    let media_id: Int
+    let accountId: Int
+    let sessionId: String
+    let mediaType: String
+    let mediaId: Int
     let favorite: Bool
 }
 

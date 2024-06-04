@@ -33,12 +33,12 @@ class GenresViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = "Genres";
         
         //Getting trending movies
-        RequestClass.request(address: .GetTrendMovies, params: .GetTrendMovies(.init(requestType: .get, language: "en-US"))) { (responce: Result<TrendingMovieStruct, Error> ) in
+        StaticMethodsClass.request(address: .GetTrendMovies, params: .GetTrendMovies(.init(requestType: .get, language: "en-US"))) { (responce: Result<TrendingMovieStruct, Error> ) in
             switch responce {
                 
                 //In case of success
             case .success(let result):
-                result.results.forEach { movie in
+                result.results!.forEach { movie in
                     self.movieList.append(movie)
                     self.collectionView.reloadData()
                 }
@@ -66,15 +66,15 @@ extension GenresViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let currentMovie = movieList[indexPath.row]
-        let url = URL(string: "\(DefaultValues.defaultImageUrl)\(currentMovie.backdrop_path!)")
+        let url = URL(string: "\(DefaultValues.defaultImageUrl)\(currentMovie.backdropPath!)")
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
         cell.imageView.kf.setImage(with: url)
         cell.movieTitleLabel.text = currentMovie.title
-        cell.vote_averageLabel.text = "\(currentMovie.vote_average!)"
-        cell.vote_countLabel.text = "\(currentMovie.vote_count!)"
-        cell.dateLabel.text = currentMovie.release_date
+        cell.vote_averageLabel.text = "\(currentMovie.voteAverage!)"
+        cell.vote_countLabel.text = "\(currentMovie.voteCount!)"
+        cell.dateLabel.text = currentMovie.releaseDate
         
         return cell
     }

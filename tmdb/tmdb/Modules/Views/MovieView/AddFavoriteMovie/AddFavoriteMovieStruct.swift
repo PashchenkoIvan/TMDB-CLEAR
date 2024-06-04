@@ -8,6 +8,6 @@
 import Foundation
 
 struct AddFavoriteMovieStruct: Encodable, Decodable {
-    let status_code: Int
-    let status_message: String
+    let statusCode: Int
+    let statusMessage: String
 }

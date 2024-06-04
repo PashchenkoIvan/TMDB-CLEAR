@@ -28,7 +28,7 @@ class MovieViewController: UIViewController {
             return
         }
         
-        if let path = movieData.backdrop_path {
+        if let path = movieData.backdropPath {
             let url = URL(string: "\(DefaultValues.defaultImageUrl)\(path)")
             let placeholder = UIImage(named: "404")
             movieImage.kf.setImage(with: url, placeholder: placeholder)
@@ -40,10 +40,10 @@ class MovieViewController: UIViewController {
         
 //        movieImage.kf.setImage(with: url)
         movieTitle.text = movieData.title ?? "error"
-        vote_average.text = "\(movieData.vote_average ?? 0)"
-        vote_count.text = "\(movieData.vote_count ?? 0)"
+        vote_average.text = "\(movieData.voteAverage ?? 0)"
+        vote_count.text = "\(movieData.voteCount ?? 0)"
         movieDescription.text = movieData.overview ?? "error"
-        date.text = movieData.release_date ?? "0"
+        date.text = movieData.releaseDate ?? "0"
         
         navigationController?.topViewController?.title = movieData.title
         
@@ -67,7 +67,7 @@ class MovieViewController: UIViewController {
                 return
             }
             
-            RequestClass.request(address: Address.GetFavoriteMovies, params: Params.AddFavoriteMovie(AddMovieParams.init(requestType: .post, account_id: userData.user_data.id, session_id: userData.session_id, media_type: "movie", media_id: movieData.id!, favorite: true))) { (responce: Result<AddFavoriteMovieStruct, Error>) in
+            StaticMethodsClass.request(address: Address.GetFavoriteMovies, params: Params.AddFavoriteMovie(AddMovieParams.init(requestType: .post, accountId: userData.userData.id, sessionId: userData.sessionId, mediaType: "movie", mediaId: movieData.id!, favorite: true))) { (responce: Result<AddFavoriteMovieStruct, Error>) in
                 
                 switch responce {
                     

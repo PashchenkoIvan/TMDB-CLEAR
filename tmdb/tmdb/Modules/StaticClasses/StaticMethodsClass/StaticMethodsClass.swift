@@ -1,11 +1,12 @@
 //
-//  RequestClass.swift
+//  StaticMethodsClass.swift
 //  tmdb
 //
-//  Created by Пащенко Иван on 28.05.2024.
+//  Created by Пащенко Иван on 31.05.2024.
 //
 
 import Foundation
+import UIKit
 import Alamofire
 
 enum DefaultValues {
@@ -43,7 +44,55 @@ enum Params {
     case searchMovie(SearchMovieParams)
 }
 
-class RequestClass {
+
+class StaticMethodsClass: NSObject {
+    public static func getUserData () -> ReturnUserDataStruct? {
+        
+        var userData: ReturnUserDataStruct?
+        
+        if let savedData = UserDefaults.standard.object(forKey: "userData") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedData = try? decoder.decode(ReturnUserDataStruct.self, from: savedData) {
+                userData = loadedData
+            }
+        }
+        
+        return userData
+    }
+    
+    static func playCheckmarkAnimation(on view: UIView) {
+            // Создание CAShapeLayer для галочки
+            let checkmarkLayer = CAShapeLayer()
+            checkmarkLayer.strokeColor = UIColor.systemPink.cgColor
+            checkmarkLayer.lineWidth = 4
+            checkmarkLayer.fillColor = UIColor.clear.cgColor // Изменено на clear для прозрачности
+            view.layer.addSublayer(checkmarkLayer)
+
+            // Создание пути для галочки
+            let checkmarkPath = UIBezierPath()
+            let center = view.center
+            checkmarkPath.move(to: CGPoint(x: center.x - 50, y: center.y))
+            checkmarkPath.addLine(to: CGPoint(x: center.x, y: center.y + 50))
+            checkmarkPath.addLine(to: CGPoint(x: center.x + 100, y: center.y - 50))
+            checkmarkLayer.path = checkmarkPath.cgPath
+
+            // Создание анимации 'strokeEnd' для галочки
+            let checkmarkAnimation = CABasicAnimation(keyPath: "strokeEnd")
+            checkmarkAnimation.fromValue = 0
+            checkmarkAnimation.toValue = 1
+            checkmarkAnimation.duration = 0.3
+
+            // Установка блока завершения с помощью CATransaction
+            CATransaction.begin()
+            CATransaction.setCompletionBlock {
+                checkmarkLayer.removeFromSuperlayer()
+            }
+
+            // Добавление анимации к checkmarkLayer
+            checkmarkLayer.add(checkmarkAnimation, forKey: "strokeEnd")
+
+            CATransaction.commit()
+        }
     
     //Static request function
     static func request<T: Codable>(address: Address, params: Params, completion: @escaping (Result<T, Error>) -> ()) {
@@ -85,7 +134,7 @@ class RequestClass {
             
         //Fetching a user's favorite movies list with pagination and sorting options
         case .GetFavoriteMoviesParam(let param):
-            url = "\(DefaultValues.defaultUrl)\(address.rawValue)/\(param.account_id)/favorite/movies?api_key=\(DefaultValues.apiKey!)&language=\(param.language)&page=\(param.page)&sort_by=\(param.sort_by)&session_id=\(param.sessionId)"
+            url = "\(DefaultValues.defaultUrl)\(address.rawValue)/\(param.accountId)/favorite/movies?api_key=\(DefaultValues.apiKey!)&language=\(param.language)&page=\(param.page)&sort_by=\(param.sortBy)&session_id=\(param.sessionId)"
             method = param.requestType
             
         //Getting trending movies based on language preference
@@ -95,7 +144,7 @@ class RequestClass {
             
         //Adding or removing a movie from the user's favorites list
         case .AddFavoriteMovie(let param):
-            url = "\(DefaultValues.defaultUrl)\(address.rawValue)\(param.account_id)/favorite?api_key=\(DefaultValues.apiKey!)&media_type=\(param.media_type)&media_id=\(param.media_id)&favorite=\(param.favorite)&session_id=\(param.session_id)"
+            url = "\(DefaultValues.defaultUrl)\(address.rawValue)\(param.accountId)/favorite?api_key=\(DefaultValues.apiKey!)&media_type=\(param.mediaType)&media_id=\(param.mediaId)&favorite=\(param.favorite)&session_id=\(param.sessionId)"
             method = param.requestType
             
         //Searching for movies using a query string
@@ -133,4 +182,3 @@ class RequestClass {
             }
     }
 }
-

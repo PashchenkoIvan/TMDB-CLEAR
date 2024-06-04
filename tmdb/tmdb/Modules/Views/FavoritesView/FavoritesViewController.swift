@@ -12,7 +12,7 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let userData = StaticMethodsClass.getUserData()
-    var requestResponce: FavoritesStruct = FavoritesStruct(page: 0, results: [], total_pages: 0, total_results: 0)
+    var requestResponce: FavoritesStruct = FavoritesStruct(page: 0, results: [], totalPages: 0, totalResults: 0)
     var movieList: Array<Movie> = []
     
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class FavoritesViewController: UIViewController {
             
             let page: Int = 1
             
-            RequestClass.request(address: .GetFavoriteMovies, params: .GetFavoriteMoviesParam(.init(requestType: .get, sessionId: userData!.session_id, sort_by: "created_at.asc", page: page, language: "en-US", account_id: userData!.user_data.id))) { (responce: Result<FavoritesStruct, Error>) in
+        StaticMethodsClass.request(address: .GetFavoriteMovies, params: .GetFavoriteMoviesParam(.init(requestType: .get, sessionId: userData!.sessionId, sortBy: "created_at.asc", page: page, language: "en-US", accountId: userData!.userData.id))) { (responce: Result<FavoritesStruct, Error>) in
                 
                 switch responce {
                 case .success(let result):
@@ -69,7 +69,7 @@ extension FavoritesViewController: UITableViewDataSource {
             
             cell.selectionStyle = .none
             
-            if let backdropPath = movieList[indexPath.row].backdrop_path {
+            if let backdropPath = movieList[indexPath.row].backdropPath {
                 let imageUrl = "\(DefaultValues.defaultImageUrl)\(backdropPath)"
                 cell.setImage(image: imageUrl)
             } else {

@@ -46,7 +46,7 @@ extension SearchViewController: UITableViewDataSource {
             
             cell.selectionStyle = .none
             
-            if let backdropPath = resultData[indexPath.row].backdrop_path {
+            if let backdropPath = resultData[indexPath.row].backdropPath {
                 let imageUrl = "\(DefaultValues.defaultImageUrl)\(backdropPath)"
                 cell.setImage(image: imageUrl)
             } else {
@@ -86,7 +86,7 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            RequestClass.request(address: .searchMovie, params: .searchMovie(.init(requestType: .get, query: searchText))) { (responce: Result<FavoritesStruct, Error>) in
+            StaticMethodsClass.request(address: .searchMovie, params: .searchMovie(.init(requestType: .get, query: searchText))) { (responce: Result<FavoritesStruct, Error>) in
                 switch responce {
                 case .success(let result):
                     self.resultData.removeAll()
