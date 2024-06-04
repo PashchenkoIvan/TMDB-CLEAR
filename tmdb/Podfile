@@ -1,7 +1,6 @@
 target 'tmdb' do
 
   pod 'Alamofire'
-  pod 'IQKeyboardManager'
   pod 'Kingfisher'
 
 end
