@@ -38,10 +38,8 @@ class GenresViewController: UIViewController {
                 
                 //In case of success
             case .success(let result):
-                result.results!.forEach { movie in
-                    self.movieList.append(movie)
-                    self.collectionView.reloadData()
-                }
+                
+                self.movieList = result.results!
                 
                 //In case of error
             case .failure(let error):
@@ -96,5 +94,5 @@ extension GenresViewController: UICollectionViewDelegate {
         // Открываем MovieViewController
         self.navigationController?.pushViewController(movieViewController, animated: true)
     }
-
+    
 }
