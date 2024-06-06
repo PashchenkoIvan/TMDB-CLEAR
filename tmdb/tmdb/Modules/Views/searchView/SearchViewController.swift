@@ -12,7 +12,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    let userData = StaticMethodsClass.getUserData()
+    let userData = StorageService.getUserData()
     var resultData: Array<Movie> = []
     
     override func viewDidLoad() {
@@ -86,14 +86,12 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            StaticMethodsClass.request(address: .searchMovie, params: .searchMovie(.init(requestType: .get, query: searchText))) { (responce: Result<FavoritesStruct, Error>) in
+            RequestClass.request(address: .searchMovie, params: .searchMovie(.init(requestType: .get, query: searchText))) { (responce: Result<FavoritesStruct, Error>) in
                 switch responce {
                 case .success(let result):
                     self.resultData.removeAll()
                     
-                    result.results.forEach { movie in
-                        self.resultData.append(movie)
-                    }
+                    self.resultData = result.results
                     
                     self.tableView.reloadData()
                 case .failure(let error):

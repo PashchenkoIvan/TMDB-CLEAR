@@ -18,7 +18,7 @@ class GenresViewController: UIViewController {
         super.viewDidLoad()
         
         //Getting user data
-        guard let userData: ReturnUserDataStruct = StaticMethodsClass.getUserData() else {
+        guard let userData: ReturnUserDataStruct = StorageService.getUserData() else {
             print("Error with getting user data")
             return
         }
@@ -33,7 +33,7 @@ class GenresViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = "Genres";
         
         //Getting trending movies
-        StaticMethodsClass.request(address: .GetTrendMovies, params: .GetTrendMovies(.init(requestType: .get, language: "en-US"))) { (responce: Result<TrendingMovieStruct, Error> ) in
+        RequestClass.request(address: .GetTrendMovies, params: .GetTrendMovies(.init(requestType: .get, language: "en-US"))) { (responce: Result<TrendingMovieStruct, Error> ) in
             switch responce {
                 
                 //In case of success
@@ -72,8 +72,8 @@ extension GenresViewController: UICollectionViewDataSource {
         
         cell.imageView.kf.setImage(with: url)
         cell.movieTitleLabel.text = currentMovie.title
-        cell.vote_averageLabel.text = "\(currentMovie.voteAverage!)"
-        cell.vote_countLabel.text = "\(currentMovie.voteCount!)"
+        cell.voteAverageLabel.text = "\(currentMovie.voteAverage!)"
+        cell.voteCountLabel.text = "\(currentMovie.voteCount!)"
         cell.dateLabel.text = currentMovie.releaseDate
         
         return cell

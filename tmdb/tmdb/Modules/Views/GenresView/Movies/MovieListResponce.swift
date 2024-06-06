@@ -1,11 +1,11 @@
 import Foundation
 
 
-struct MovieListResponce : Codable {
-    let page : Int?
-    let results : [Movie]?
-    let totalPages : Int?
-    let totalResults : Int?
+struct MovieListResponce: Codable {
+    let page: Int?
+    let results: [Movie]?
+    let totalPages: Int?
+    let totalResults: Int?
     
     enum CodingKeys: String, CodingKey {
         

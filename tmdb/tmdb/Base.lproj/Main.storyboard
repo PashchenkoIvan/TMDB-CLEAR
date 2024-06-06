@@ -280,8 +280,8 @@
                         <outlet property="movieDescription" destination="gdJ-xg-daV" id="AOq-EE-9Ks"/>
                         <outlet property="movieImage" destination="RYx-fy-A98" id="WBm-Co-zac"/>
                         <outlet property="movieTitle" destination="fxl-97-5Hn" id="UyR-Ha-gqF"/>
-                        <outlet property="vote_average" destination="CQO-9H-sfe" id="jmh-8h-GRE"/>
-                        <outlet property="vote_count" destination="4Wp-rY-R4C" id="Oxl-cX-YdZ"/>
+                        <outlet property="voteAverage" destination="CQO-9H-sfe" id="cNM-Hy-iM9"/>
+                        <outlet property="voteCount" destination="4Wp-rY-R4C" id="ikD-gW-z2Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Y7-wP-w18" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -371,8 +371,8 @@
                                             <outlet property="dateLabel" destination="Z4f-Pg-h78" id="OCP-eb-ErL"/>
                                             <outlet property="imageView" destination="enW-Zo-ynb" id="ncR-h4-3f7"/>
                                             <outlet property="movieTitleLabel" destination="1gu-Ry-DpE" id="Da5-Mq-UZ2"/>
-                                            <outlet property="vote_averageLabel" destination="iSF-f2-Myw" id="GMc-qV-bkC"/>
-                                            <outlet property="vote_countLabel" destination="vEL-Jf-45c" id="Dpi-lg-P6h"/>
+                                            <outlet property="voteAverageLabel" destination="iSF-f2-Myw" id="w9a-fH-p2V"/>
+                                            <outlet property="voteCountLabel" destination="vEL-Jf-45c" id="ZdK-Cy-Vjg"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

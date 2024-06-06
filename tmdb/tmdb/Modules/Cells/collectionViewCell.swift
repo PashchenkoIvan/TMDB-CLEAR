@@ -11,8 +11,8 @@ class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
-    @IBOutlet weak var vote_averageLabel: UILabel!
-    @IBOutlet weak var vote_countLabel: UILabel!
+    @IBOutlet weak var voteAverageLabel: UILabel!
+    @IBOutlet weak var voteCountLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
 }

@@ -17,21 +17,21 @@ class RequestsStaticClass {
         var sessionId: String = ""
         
         //|GET| Getting request token
-        StaticMethodsClass.request(address: .GetRequestToken, params: .GetRequestTokenParam(.init(requestType: .get))) { (FRresponce: Result<RequestTokenStruct, Error>) in
+        RequestClass.request(address: .GetRequestToken, params: .GetRequestTokenParam(.init(requestType: .get))) { (FRresponce: Result<RequestTokenStruct, Error>) in
             
             //In case of successful completion request
             switch FRresponce {
             case .success(let result):
                 
                 //|POST| Authorization token request together with login and password
-                StaticMethodsClass.request(address: .CreateRequestToken, params: .CreateRequestTokenParam(.init(requestType: .post, username: username, password: password, requestToken: result.requestToken))) { (SRresponce: Result<RequestTokenStruct, Error>) in
+                RequestClass.request(address: .CreateRequestToken, params: .CreateRequestTokenParam(.init(requestType: .post, username: username, password: password, requestToken: result.requestToken))) { (SRresponce: Result<RequestTokenStruct, Error>) in
                     
                     //In case of successful completion request
                     switch SRresponce {
                     case .success(let result):
                         
                         //|POST| Creting session token
-                        StaticMethodsClass.request(address: .CreateSessionId, params: .CreateSessionIdParam(.init(requestType: .post, requestToken: result.requestToken))) { (Sresponce:Result<SessionIdStruct, Error>) in
+                        RequestClass.request(address: .CreateSessionId, params: .CreateSessionIdParam(.init(requestType: .post, requestToken: result.requestToken))) { (Sresponce:Result<SessionIdStruct, Error>) in
                             
                             //In case of successful completion request
                             switch Sresponce {
@@ -40,7 +40,7 @@ class RequestsStaticClass {
                                 sessionId = result.sessionId
                                 
                                 //|GET| Getting user information
-                                StaticMethodsClass.request(address: .GetUserInfo, params: .GetUserInfoParam(.init(requestType: .get, sessionId: result.sessionId))) { (UIresponce:Result<UserStruct, Error>) in
+                                RequestClass.request(address: .GetUserInfo, params: .GetUserInfoParam(.init(requestType: .get, sessionId: result.sessionId))) { (UIresponce:Result<UserStruct, Error>) in
                                     
                                     //In case of successful completion request
                                     switch UIresponce {

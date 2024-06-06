@@ -15,8 +15,8 @@ class MovieViewController: UIViewController {
     
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var vote_average: UILabel!
-    @IBOutlet weak var vote_count: UILabel!
+    @IBOutlet weak var voteAverage: UILabel!
+    @IBOutlet weak var voteCount: UILabel!
     @IBOutlet weak var movieDescription: UILabel!
     @IBOutlet weak var date: UILabel!
     
@@ -40,8 +40,8 @@ class MovieViewController: UIViewController {
         
 //        movieImage.kf.setImage(with: url)
         movieTitle.text = movieData.title ?? "error"
-        vote_average.text = "\(movieData.voteAverage ?? 0)"
-        vote_count.text = "\(movieData.voteCount ?? 0)"
+        voteAverage.text = "\(movieData.voteAverage ?? 0)"
+        voteCount.text = "\(movieData.voteCount ?? 0)"
         movieDescription.text = movieData.overview ?? "error"
         date.text = movieData.releaseDate ?? "0"
         
@@ -62,12 +62,12 @@ class MovieViewController: UIViewController {
                 return
             }
             
-            guard let userData = StaticMethodsClass.getUserData() else {
+            guard let userData = StorageService.getUserData() else {
                 print("Error with getting user data")
                 return
             }
             
-            StaticMethodsClass.request(address: Address.GetFavoriteMovies, params: Params.AddFavoriteMovie(AddMovieParams.init(requestType: .post, accountId: userData.userData.id, sessionId: userData.sessionId, mediaType: "movie", mediaId: movieData.id!, favorite: true))) { (responce: Result<AddFavoriteMovieStruct, Error>) in
+            RequestClass.request(address: Endpoints.GetFavoriteMovies, params: EndpointParams.AddFavoriteMovie(AddMovieParams.init(requestType: .post, accountId: userData.userData.id, sessionId: userData.sessionId, mediaType: "movie", mediaId: movieData.id!, favorite: true))) { (responce: Result<AddFavoriteMovieStruct, Error>) in
                 
                 switch responce {
                     
@@ -75,7 +75,7 @@ class MovieViewController: UIViewController {
                     print(success)
                     self.isFavouriteMovie = true
                     
-                    StaticMethodsClass.playCheckmarkAnimation(on: self.movieImage)
+                    UIView.playCheckmarkAnimation(on: self.movieImage)
                     
                 case .failure(let failure):
                     print(failure)

@@ -11,7 +11,7 @@ class FavoritesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let userData = StaticMethodsClass.getUserData()
+    let userData = StorageService.getUserData()
     var requestResponce: FavoritesStruct = FavoritesStruct(page: 0, results: [], totalPages: 0, totalResults: 0)
     var movieList: Array<Movie> = []
     
@@ -32,7 +32,7 @@ class FavoritesViewController: UIViewController {
             
             let page: Int = 1
             
-        StaticMethodsClass.request(address: .GetFavoriteMovies, params: .GetFavoriteMoviesParam(.init(requestType: .get, sessionId: userData!.sessionId, sortBy: "created_at.asc", page: page, language: "en-US", accountId: userData!.userData.id))) { (responce: Result<FavoritesStruct, Error>) in
+        RequestClass.request(address: .GetFavoriteMovies, params: .GetFavoriteMoviesParam(.init(requestType: .get, sessionId: userData!.sessionId, sortBy: "created_at.asc", page: page, language: "en-US", accountId: userData!.userData.id))) { (responce: Result<FavoritesStruct, Error>) in
                 
                 switch responce {
                 case .success(let result):
