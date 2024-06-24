@@ -9,5 +9,5 @@ import Foundation
 
 struct ReturnUserDataStruct: Encodable, Decodable {
     let sessionId: String
-    let userData: UserStruct
+    let userData: User
 }

@@ -67,7 +67,7 @@ class MovieViewController: UIViewController {
                 return
             }
             
-            RequestClass.request(address: Endpoints.GetFavoriteMovies, params: EndpointParams.AddFavoriteMovie(AddMovieParams.init(requestType: .post, accountId: userData.userData.id, sessionId: userData.sessionId, mediaType: "movie", mediaId: movieData.id!, favorite: true))) { (responce: Result<AddFavoriteMovieStruct, Error>) in
+            RequestClass.request(address: Endpoints.getFavoriteMovies, params: EndpointParams.addFavoriteMovie(addMovieParams.init(requestType: .post, accountId: userData.userData.id, sessionId: userData.sessionId, mediaType: "movie", mediaId: movieData.id!, favorite: true))) { (responce: Result<AddFavoriteMovieStruct, Error>) in
                 
                 switch responce {
                     

@@ -8,37 +8,37 @@
 import Foundation
 import Alamofire
 
-struct GetGenresListParams {
+struct getGenresListParams {
     let requestType: Alamofire.HTTPMethod
     let language: String
 }
 
-struct GetMovieParams {
+struct getMovieParams {
     let requestType: Alamofire.HTTPMethod
 }
 
-struct GetRequestTokenParams {
+struct getRequestTokenParams {
     let requestType: Alamofire.HTTPMethod
 }
 
-struct CreateRequestTokenParams {
+struct createRequestTokenParams {
     let requestType: Alamofire.HTTPMethod
     let username: String
     let password: String
     let requestToken: String
 }
 
-struct CreateSessionIdParams {
+struct createSessionIdParams {
     let requestType: Alamofire.HTTPMethod
     let requestToken: String
 }
 
-struct GetUserInfoParams {
+struct getUserInfoParams {
     let requestType: Alamofire.HTTPMethod
     let sessionId: String
 }
 
-struct GetFavoritesParams {
+struct getFavoritesParams {
     let requestType: Alamofire.HTTPMethod
     let sessionId: String
     let sortBy: String
@@ -47,12 +47,12 @@ struct GetFavoritesParams {
     let accountId: Int
 }
 
-struct GetMoviesTrendparams {
+struct getMoviesTrendparams {
     let requestType: Alamofire.HTTPMethod
     let language: String
 }
 
-struct AddMovieParams {
+struct addMovieParams {
     let requestType: Alamofire.HTTPMethod
     let accountId: Int
     let sessionId: String
@@ -61,7 +61,7 @@ struct AddMovieParams {
     let favorite: Bool
 }
 
-struct SearchMovieParams {
+struct searchMovieParams {
     let requestType: Alamofire.HTTPMethod
     let query: String
 }

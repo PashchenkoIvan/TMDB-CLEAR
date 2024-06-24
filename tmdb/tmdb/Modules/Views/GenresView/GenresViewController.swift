@@ -33,13 +33,14 @@ class GenresViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = "Genres";
         
         //Getting trending movies
-        RequestClass.request(address: .GetTrendMovies, params: .GetTrendMovies(.init(requestType: .get, language: "en-US"))) { (responce: Result<TrendingMovieStruct, Error> ) in
+        RequestClass.request(address: .getTrendMovies, params: .getTrendMovies(.init(requestType: .get, language: "en-US"))) { (responce: Result<TrendingMovieStruct, Error> ) in
             switch responce {
                 
                 //In case of success
             case .success(let result):
                 
                 self.movieList = result.results!
+                self.collectionView.reloadData()
                 
                 //In case of error
             case .failure(let error):
