@@ -48,9 +48,27 @@ class MovieViewController: UIViewController {
         navigationController?.topViewController?.title = movieData.title
         
         // Создание кнопки 'Add to Favorites' с использованием системного изображения
-        if let image = UIImage(systemName: "star") {
-            let favoritesButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addToFavorites))
-            navigationItem.rightBarButtonItem = favoritesButton
+        async {
+            var isFavorite: Bool = false // Declare isFavorite outside the closure
+            
+            let isFavoriteResult = await withCheckedContinuation { continuation in
+                isFavoriteMovieFunc(movie: movieData, page: 1) { result in
+                    isFavorite = result // Assign the value inside the closure
+                    continuation.resume(returning: result)
+                }
+            }
+            
+            if isFavoriteResult {
+                if let image = UIImage(systemName: "minus") {
+                    let favoritesButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addToFavorites))
+                    navigationItem.rightBarButtonItem = favoritesButton
+                }
+            } else if !isFavoriteResult {
+                if let image = UIImage(systemName: "plus") {
+                    let favoritesButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addToFavorites))
+                    navigationItem.rightBarButtonItem = favoritesButton
+                }
+            }
         }
     }
     
@@ -88,3 +106,31 @@ class MovieViewController: UIViewController {
 }
 
 
+extension MovieViewController {
+    func isFavoriteMovieFunc(movie: Movie, page: Int, completion: @escaping (Bool) -> Void) {
+        
+        var isFavorite: Bool = false
+        
+        guard let userData = StorageService.getUserData() else {
+            print("Error with getting user data")
+            return
+        }
+        
+        RequestClass.request(address: .getFavoriteMovies, params: .getFavoriteMoviesParam(.init(requestType: .get, sessionId: userData.sessionId, sortBy: "created_at.asc", page: page, language: "en-US", accountId: userData.userData.id))) { (responce: Result<FavoritesStruct, Error>) in
+            
+            switch responce {
+            case .success(let result):
+                result.results.forEach{ item in
+                    if movie.id == item.id {
+                        isFavorite = true
+                    }
+                }
+                
+                completion(isFavorite)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+}
