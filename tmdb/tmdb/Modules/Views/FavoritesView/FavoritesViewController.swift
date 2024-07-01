@@ -28,25 +28,27 @@ class FavoritesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            
-            let page: Int = 1
-            
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.topItem?.title = "Favorites";
+        
+        let page: Int = 1
+        
         RequestClass.request(address: .getFavoriteMovies, params: .getFavoriteMoviesParam(.init(requestType: .get, sessionId: userData!.sessionId, sortBy: "created_at.asc", page: page, language: "en-US", accountId: userData!.userData.id))) { (responce: Result<FavoritesStruct, Error>) in
-                
-                switch responce {
-                case .success(let result):
-                    
-                    self.requestResponce = result
-                    self.movieList = result.results
-                    self.tableView.reloadData()
-                    
-                case .failure(let error):
-                    print(error)
-                }
-            }
             
+            switch responce {
+            case .success(let result):
+                
+                self.requestResponce = result
+                self.movieList = result.results
+                self.tableView.reloadData()
+                
+            case .failure(let error):
+                print(error)
+            }
         }
+        
+    }
     
 }
 

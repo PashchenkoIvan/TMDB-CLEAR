@@ -18,6 +18,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.topItem?.title = "Search";
+        
         // Регистрация ячейки таблицы из Nib-файла
         let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "SearchTableViewCell")

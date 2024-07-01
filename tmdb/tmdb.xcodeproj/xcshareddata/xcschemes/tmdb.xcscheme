@@ -56,6 +56,11 @@
             value = "dfd88fd1f6cf5c2840a006a8ed225151"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "api_request"
+            value = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZmQ4OGZkMWY2Y2Y1YzI4NDBhMDA2YThlZDIyNTE1MSIsIm5iZiI6MTcxOTU4MzM5OC4yNjU2ODUsInN1YiI6IjY2MTY3ZDAxNGRhM2Q0MDBlNzE0N2UzNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Y0xLYmLNT9-ESZORVH2RnmXAQNqIfLQpCLDwt8TItkw"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction

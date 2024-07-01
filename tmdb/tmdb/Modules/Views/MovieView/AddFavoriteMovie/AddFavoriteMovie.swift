@@ -7,7 +7,13 @@
 
 import Foundation
 
-struct AddFavoriteMovieStruct: Encodable, Decodable {
+// MARK: - AddFavoriteMovieStruct
+struct AddFavoriteMovieStruct: Codable {
     let statusCode: Int
     let statusMessage: String
+
+    enum CodingKeys: String, CodingKey {
+        case statusCode = "status_code"
+        case statusMessage = "status_message"
+    }
 }
