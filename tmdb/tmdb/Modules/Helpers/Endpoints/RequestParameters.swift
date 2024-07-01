@@ -52,13 +52,13 @@ struct getMoviesTrendparams {
     let language: String
 }
 
-struct addMovieParams {
+struct addRemoveMovieParams {
     let requestType: Alamofire.HTTPMethod
     let accountId: Int
     let sessionId: String
-    let mediaType: String
-    let mediaId: Int
-    let favorite: Bool
+//    let mediaType: String
+//    let mediaId: Int
+//    let favorite: Bool
 }
 
 struct searchMovieParams {

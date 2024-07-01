@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Alamofire
 
 class MovieViewController: UIViewController {
     
@@ -36,9 +37,9 @@ class MovieViewController: UIViewController {
             movieImage.image = UIImage(named: "404")
             print("Error: backdrop_path is nil")
         }
-
         
-//        movieImage.kf.setImage(with: url)
+        
+        //        movieImage.kf.setImage(with: url)
         movieTitle.text = movieData.title ?? "error"
         voteAverage.text = "\(movieData.voteAverage ?? 0)"
         voteCount.text = "\(movieData.voteCount ?? 0)"
@@ -54,19 +55,60 @@ class MovieViewController: UIViewController {
             let isFavoriteResult = await withCheckedContinuation { continuation in
                 isFavoriteMovieFunc(movie: movieData, page: 1) { result in
                     isFavorite = result // Assign the value inside the closure
+                    print(isFavorite)
                     continuation.resume(returning: result)
                 }
             }
             
             if isFavoriteResult {
                 if let image = UIImage(systemName: "minus") {
-                    let favoritesButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addToFavorites))
+                    let favoritesButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(removeFromFavorites))
                     navigationItem.rightBarButtonItem = favoritesButton
                 }
             } else if !isFavoriteResult {
                 if let image = UIImage(systemName: "plus") {
                     let favoritesButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addToFavorites))
                     navigationItem.rightBarButtonItem = favoritesButton
+                }
+            }
+        }
+    }
+}
+
+
+extension MovieViewController {
+    
+    @objc func removeFromFavorites() {
+        guard let movieData = movie else {
+            print("Error with getting movie data")
+            return
+        }
+        
+        guard let userData = StorageService.getUserData() else {
+            print("Error with getting user data")
+            return
+        }
+        
+        let favoriteMovie: Parameters = [
+            "media_type": "movie",
+            "media_id": movieData.id!,
+            "favorite": false
+        ]
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            RequestClass.request(address: .getFavoriteMovies, params: .addRemoveFavoriteMovie(addRemoveMovieParams(requestType: .post, accountId: userData.userData.id, sessionId: userData.sessionId)), rawBody: favoriteMovie) { (response: Result<AddFavoriteMovieStruct, Error>) in
+                switch response {
+                case .success(let success):
+                    print(success)
+                    self.isFavouriteMovie = false
+                    
+                    if let image = UIImage(systemName: "plus") {
+                        let favoritesButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(self.addToFavorites))
+                        self.navigationItem.rightBarButtonItem = favoritesButton
+                    }
+                    // Добавьте здесь вашу анимацию
+                case .failure(let failure):
+                    print(failure)
                 }
             }
         }
@@ -85,15 +127,24 @@ class MovieViewController: UIViewController {
                 return
             }
             
-            RequestClass.request(address: Endpoints.getFavoriteMovies, params: EndpointParams.addFavoriteMovie(addMovieParams.init(requestType: .post, accountId: userData.userData.id, sessionId: userData.sessionId, mediaType: "movie", mediaId: movieData.id!, favorite: true))) { (responce: Result<AddFavoriteMovieStruct, Error>) in
-                
+            let favoriteMovie: Parameters = [
+                "media_type": "movie",
+                "media_id": movieData.id!,
+                "favorite": true
+            ]
+            
+            
+            RequestClass.request(address: .getFavoriteMovies, params: .addRemoveFavoriteMovie(addRemoveMovieParams.init(requestType: .post, accountId: userData.userData.id, sessionId: userData.sessionId)), rawBody: favoriteMovie) { (responce: Result<AddFavoriteMovieStruct, Error>) in
                 switch responce {
                     
                 case .success(let success):
                     print(success)
-                    self.isFavouriteMovie = true
+                    self.isFavouriteMovie = false
                     
-                    UIView.playCheckmarkAnimation(on: self.movieImage)
+                    if let image = UIImage(systemName: "minus") {
+                        let favoritesButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(self.addToFavorites))
+                        self.navigationItem.rightBarButtonItem = favoritesButton
+                    }
                     
                 case .failure(let failure):
                     print(failure)
@@ -103,10 +154,7 @@ class MovieViewController: UIViewController {
             print("This movie is already in favorite list")
         }
     }
-}
-
-
-extension MovieViewController {
+    
     func isFavoriteMovieFunc(movie: Movie, page: Int, completion: @escaping (Bool) -> Void) {
         
         var isFavorite: Bool = false
