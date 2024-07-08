@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class LoginViewController: UIViewController {
 
@@ -30,7 +31,9 @@ class LoginViewController: UIViewController {
                     DispatchQueue.main.async {
                         let encoder = JSONEncoder()
                         if let encodedData = try? encoder.encode(result) {
-                            UserDefaults.standard.set(encodedData, forKey: "userData")
+                            
+                            let keychain = KeychainSwift()
+                            keychain.set(encodedData, forKey: "userData")
                             
                             // Создаем экземпляр TabBarController
                             let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
