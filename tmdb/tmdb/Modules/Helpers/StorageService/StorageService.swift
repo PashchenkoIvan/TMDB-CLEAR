@@ -7,20 +7,22 @@
 
 import Foundation
 import UIKit
+import KeychainSwift
 
 
 class StorageService: NSObject {
-    public static func getUserData () -> ReturnUserDataStruct? {
-        
-        var userData: ReturnUserDataStruct?
-        
-        if let savedData = UserDefaults.standard.object(forKey: "userData") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedData = try? decoder.decode(ReturnUserDataStruct.self, from: savedData) {
-                userData = loadedData
+    static func getUserData() -> ReturnUserDataStruct? {
+        let keychain = KeychainSwift()
+        if let userDataString = keychain.get("userData"),
+           let userDataData = userDataString.data(using: .utf8) {
+            do {
+                let decoder = JSONDecoder()
+                let userData = try decoder.decode(ReturnUserDataStruct.self, from: userDataData)
+                return userData
+            } catch {
+                print("Ошибка при декодировании данных пользователя: \(error)")
             }
         }
-        
-        return userData
+        return nil
     }
 }

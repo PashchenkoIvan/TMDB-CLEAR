@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ReturnUserDataStruct: Encodable, Decodable {
+public struct ReturnUserDataStruct: Encodable, Decodable {
     let sessionId: String
     let userData: User
 }

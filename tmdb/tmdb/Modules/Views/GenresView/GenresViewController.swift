@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Alamofire
+import KeychainSwift
 import Kingfisher
 
 class GenresViewController: UIViewController {
@@ -28,6 +30,11 @@ class GenresViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let buttonImage = UIImage(systemName: "rectangle.portrait.and.arrow.forward") {
+            let logoutButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(logoutUser))
+            navigationItem.rightBarButtonItem = logoutButton
+        } 
         
         //Named this view in top navigation bar
         navigationController?.navigationBar.topItem?.title = "Genres";
@@ -96,4 +103,34 @@ extension GenresViewController: UICollectionViewDelegate {
         self.navigationController?.pushViewController(movieViewController, animated: true)
     }
     
+}
+
+extension GenresViewController {
+    @objc func logoutUser () {
+        
+        guard let userData = StorageService.getUserData() else {
+            print("Error with getting user data")
+            return
+        }
+        
+        let rawBody: Parameters = [
+            "session_id": userData.sessionId
+        ]
+        
+        let keychain = KeychainSwift()
+        
+        RequestClass.request(address: .deleteSession, params: .deleteSession(.init(requestType: .delete)), rawBody: rawBody) { (responce: Result<DeleteSession, Error>) in
+            switch responce {
+            case .success(let result):
+                
+                print(result)
+                keychain.delete("userData")
+                
+                exit(0)
+                
+            case .failure(let error):
+                print("Error with deleting session: \(error)")
+            }
+        }
+    }
 }
