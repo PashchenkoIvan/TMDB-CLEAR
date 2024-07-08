@@ -100,11 +100,15 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/KeychainSwift/KeychainSwift.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Realm/realm_objc_privacy.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/realm_swift_privacy.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/KeychainSwift/KeychainSwift.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/Realm/realm_objc_privacy.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/realm_swift_privacy.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

@@ -30,6 +30,7 @@ enum Endpoints: String {
     case getFavoriteMovies = "account/"
     case getTrendMovies = "trending/movie/day"
     case searchMovie = "search/movie"
+    case deleteSession = "authentication/session"
 }
 
 //Data type for selecting the type of request input parameters
@@ -44,10 +45,7 @@ enum EndpointParams {
     case getTrendMovies(getMoviesTrendparams)
     case addRemoveFavoriteMovie(addRemoveMovieParams)
     case searchMovie(searchMovieParams)
-}
-
-enum RawBody: Encodable {
-    case addRemoveFavoriteMovieRaw(addRemoveFavoriteMovie)
+    case deleteSession(deleteSession)
 }
 
 class RequestClass {
@@ -55,7 +53,6 @@ class RequestClass {
     static func request<T: Codable>(address: Endpoints, params: EndpointParams, rawBody: Parameters? = nil, completion: @escaping (Result<T, Error>) -> ()) {
         var url: String
         var method: HTTPMethod
-        var isBody: Bool
 
         //Selecting the required request
         switch params {
@@ -63,57 +60,51 @@ class RequestClass {
         case .addRemoveFavoriteMovie(let param):
             url = "\(DefaultValues.defaultUrl)\(address.rawValue)\(param.accountId)/favorite?session_id=\(param.sessionId)"
             method = param.requestType
-            isBody = true
             
         case .genresListParam(let param):
             url = "\(DefaultValues.defaultUrl)\(address.rawValue)?language=\(param.language)"
             method = param.requestType
-            isBody = false
             
         case .getMovieParam(let param):
             url = "\(DefaultValues.defaultUrl)\(address.rawValue)"
             method = param.requestType
-            isBody = false
             
         case .getRequestTokenParam(let param):
             url = "\(DefaultValues.defaultUrl)\(address.rawValue)"
             method = param.requestType
-            isBody = false
             
         case .createRequestTokenParam(let param):
             url = "\(DefaultValues.defaultUrl)\(address.rawValue)?username=\(param.username)&password=\(param.password)&request_token=\(param.requestToken)"
             method = param.requestType
-            isBody = false
             
         case .createSessionIdParam(let param):
             url = "\(DefaultValues.defaultUrl)\(address.rawValue)?request_token=\(param.requestToken)"
             method = param.requestType
-            isBody = false
             
         case .getUserInfoParam(let param):
             url = "\(DefaultValues.defaultUrl)\(address.rawValue)?session_id=\(param.sessionId)"
             method = param.requestType
-            isBody = false
             
         case .getFavoriteMoviesParam(let param):
             url = "\(DefaultValues.defaultUrl)\(address.rawValue)/\(param.accountId)/favorite/movies?language=\(param.language)&page=\(param.page)&sort_by=\(param.sortBy)&session_id=\(param.sessionId)"
             method = param.requestType
-            isBody = false
             
         case .getTrendMovies(let param):
             url = "\(DefaultValues.defaultUrl)\(address.rawValue)?language=\(param.language)"
             method = param.requestType
-            isBody = false
             
         case .searchMovie(let param):
             url = "\(DefaultValues.defaultUrl)\(address.rawValue)?query=\(param.query)"
             method = param.requestType
-            isBody = false
+            
+        case .deleteSession(let param):
+            url = "\(DefaultValues.defaultUrl)\(address.rawValue)"
+            method = param.requestType
         }
         
         
         //
-        if isBody {
+        if rawBody != nil {
             AF.request(url, method: method, parameters: rawBody, encoding: JSONEncoding.default, headers: ["Authorization": "Bearer \(DefaultValues.apiRequest! )"])
                 .validate()
                 .responseJSON { response in

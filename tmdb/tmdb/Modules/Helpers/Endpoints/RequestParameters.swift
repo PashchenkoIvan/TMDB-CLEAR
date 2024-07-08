@@ -56,12 +56,13 @@ struct addRemoveMovieParams {
     let requestType: Alamofire.HTTPMethod
     let accountId: Int
     let sessionId: String
-//    let mediaType: String
-//    let mediaId: Int
-//    let favorite: Bool
 }
 
 struct searchMovieParams {
     let requestType: Alamofire.HTTPMethod
     let query: String
+}
+
+struct deleteSession {
+    let requestType: Alamofire.HTTPMethod
 }
