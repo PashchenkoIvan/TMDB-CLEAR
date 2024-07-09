@@ -40,13 +40,15 @@ class GenresViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = "Genres";
         
         //Getting trending movies
-        RequestClass.request(address: .getTrendMovies, params: .getTrendMovies(.init(requestType: .get, language: "en-US"))) { (responce: Result<TrendingMovieStruct, Error> ) in
+        RequestClass.request(address: .getTrendMovies, params: .getTrendMovies(.init(requestType: .get, language: "en-US"))) { (responce: Result<MovieListResponce, Error> ) in
             switch responce {
                 
                 //In case of success
             case .success(let result):
                 
-                self.movieList = result.results!
+                RealmHelper.updateDatabase(dataType: DataBase.trend, response: result)
+                
+                self.movieList = result.results
                 self.collectionView.reloadData()
                 
                 //In case of error

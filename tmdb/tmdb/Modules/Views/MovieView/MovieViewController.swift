@@ -164,7 +164,7 @@ extension MovieViewController {
             return
         }
         
-        RequestClass.request(address: .getFavoriteMovies, params: .getFavoriteMoviesParam(.init(requestType: .get, sessionId: userData.sessionId, sortBy: "created_at.asc", page: page, language: "en-US", accountId: userData.userData.id))) { (responce: Result<FavoritesStruct, Error>) in
+        RequestClass.request(address: .getFavoriteMovies, params: .getFavoriteMoviesParam(.init(requestType: .get, sessionId: userData.sessionId, sortBy: "created_at.asc", page: page, language: "en-US", accountId: userData.userData.id))) { (responce: Result<MovieListResponce, Error>) in
             
             switch responce {
             case .success(let result):

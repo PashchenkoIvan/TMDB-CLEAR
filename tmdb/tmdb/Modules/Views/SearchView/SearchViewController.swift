@@ -88,7 +88,7 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            RequestClass.request(address: .searchMovie, params: .searchMovie(.init(requestType: .get, query: searchText))) { (responce: Result<FavoritesStruct, Error>) in
+            RequestClass.request(address: .searchMovie, params: .searchMovie(.init(requestType: .get, query: searchText))) { (responce: Result<MovieListResponce, Error>) in
                 switch responce {
                 case .success(let result):
                     self.resultData.removeAll()

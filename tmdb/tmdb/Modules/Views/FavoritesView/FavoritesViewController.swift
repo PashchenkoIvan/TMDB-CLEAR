@@ -12,7 +12,7 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let userData = StorageService.getUserData()
-    var requestResponce: FavoritesStruct = FavoritesStruct(page: 0, results: [], totalPages: 0, totalResults: 0)
+    var requestResponce: MovieListResponce = MovieListResponce(page: 0, results: [], totalPages: 0, totalResults: 0)
     var movieList: Array<Movie> = []
     
     override func viewDidLoad() {
@@ -34,10 +34,12 @@ class FavoritesViewController: UIViewController {
         
         let page: Int = 1
         
-        RequestClass.request(address: .getFavoriteMovies, params: .getFavoriteMoviesParam(.init(requestType: .get, sessionId: userData!.sessionId, sortBy: "created_at.asc", page: page, language: "en-US", accountId: userData!.userData.id))) { (responce: Result<FavoritesStruct, Error>) in
+        RequestClass.request(address: .getFavoriteMovies, params: .getFavoriteMoviesParam(.init(requestType: .get, sessionId: userData!.sessionId, sortBy: "created_at.asc", page: page, language: "en-US", accountId: userData!.userData.id))) { (responce: Result<MovieListResponce, Error>) in
             
             switch responce {
             case .success(let result):
+                
+                RealmHelper.updateDatabase(dataType: DataBase.favorite, response: result)
                 
                 self.requestResponce = result
                 self.movieList = result.results
