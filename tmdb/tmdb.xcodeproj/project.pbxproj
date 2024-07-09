@@ -15,7 +15,7 @@
 		630D64E02C07A6C400C7B64D /* SessionIdStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D64DE2C07A6C400C7B64D /* SessionIdStruct.swift */; };
 		631153582C0E55AF00B93A77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631153572C0E55AF00B93A77 /* User.swift */; };
 		6311535A2C0E56EB00B93A77 /* ResultUserDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631153592C0E56EB00B93A77 /* ResultUserDataStruct.swift */; };
-		635499B12C2A08F800199CD8 /* CheckStaticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635499B02C2A08F800199CD8 /* CheckStaticService.swift */; };
+		635499B12C2A08F800199CD8 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635499B02C2A08F800199CD8 /* NetworkHelper.swift */; };
 		635853B42C11FB92004B6153 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635853B32C11FB92004B6153 /* Endpoints.swift */; };
 		635853B72C11FE51004B6153 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635853B62C11FE51004B6153 /* UIView+Animation.swift */; };
 		6383EDC22C0930A500CEA716 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383EDC12C0930A500CEA716 /* StorageService.swift */; };
@@ -38,6 +38,7 @@
 		63F35C5E2C3C4CC600A29254 /* FavoriteMovieObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F35C5D2C3C4CC600A29254 /* FavoriteMovieObj.swift */; };
 		63F35C602C3D8F2300A29254 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F35C5F2C3D8F2300A29254 /* RealmHelper.swift */; };
 		63F35C622C3D975E00A29254 /* TrendMovieObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F35C612C3D975E00A29254 /* TrendMovieObj.swift */; };
+		63F35C652C3DB85B00A29254 /* UIViewControllerExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F35C642C3DB85B00A29254 /* UIViewControllerExtentions.swift */; };
 		978729AE1A6B9873F0578805 /* libPods-tmdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C931C4A101B77B3C8D5A17 /* libPods-tmdb.a */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +53,7 @@
 		630D64DE2C07A6C400C7B64D /* SessionIdStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionIdStruct.swift; sourceTree = "<group>"; };
 		631153572C0E55AF00B93A77 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		631153592C0E56EB00B93A77 /* ResultUserDataStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultUserDataStruct.swift; sourceTree = "<group>"; };
-		635499B02C2A08F800199CD8 /* CheckStaticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckStaticService.swift; sourceTree = "<group>"; };
+		635499B02C2A08F800199CD8 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		635853B32C11FB92004B6153 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		635853B62C11FE51004B6153 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		6383EDC12C0930A500CEA716 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		63F35C5D2C3C4CC600A29254 /* FavoriteMovieObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovieObj.swift; sourceTree = "<group>"; };
 		63F35C5F2C3D8F2300A29254 /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		63F35C612C3D975E00A29254 /* TrendMovieObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendMovieObj.swift; sourceTree = "<group>"; };
+		63F35C642C3DB85B00A29254 /* UIViewControllerExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtentions.swift; sourceTree = "<group>"; };
 		AE9491F0487F1578F4F95A79 /* Pods-tmdb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tmdb.release.xcconfig"; path = "Target Support Files/Pods-tmdb/Pods-tmdb.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				63F35C5B2C3C4CAA00A29254 /* Realm */,
-				635499AF2C2A08BE00199CD8 /* CheckStaticService */,
+				635499AF2C2A08BE00199CD8 /* NetworkHelper */,
 				635853B52C11FDDD004B6153 /* UIView+Animation */,
 				635853B22C11FB7C004B6153 /* Endpoints */,
 				6383EDC02C09309300CEA716 /* StorageService */,
@@ -130,6 +132,7 @@
 				6383EDCC2C093E4D00CEA716 /* MovieView */,
 				630D64CF2C060F1500C7B64D /* GenresView */,
 				630D64CC2C060EE200C7B64D /* Login */,
+				63F35C642C3DB85B00A29254 /* UIViewControllerExtentions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,12 +193,12 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		635499AF2C2A08BE00199CD8 /* CheckStaticService */ = {
+		635499AF2C2A08BE00199CD8 /* NetworkHelper */ = {
 			isa = PBXGroup;
 			children = (
-				635499B02C2A08F800199CD8 /* CheckStaticService.swift */,
+				635499B02C2A08F800199CD8 /* NetworkHelper.swift */,
 			);
-			path = CheckStaticService;
+			path = NetworkHelper;
 			sourceTree = "<group>";
 		};
 		635853B22C11FB7C004B6153 /* Endpoints */ = {
@@ -456,6 +459,7 @@
 				6383EDD12C0948A100CEA716 /* AddFavoriteMovie.swift in Sources */,
 				6383EDC22C0930A500CEA716 /* StorageService.swift in Sources */,
 				630D64CE2C060EFB00C7B64D /* LoginRequestLogic.swift in Sources */,
+				63F35C652C3DB85B00A29254 /* UIViewControllerExtentions.swift in Sources */,
 				63B56AAF2C060277003271A9 /* LoginViewController.swift in Sources */,
 				6383EDC92C0931D100CEA716 /* MovieListResponce.swift in Sources */,
 				635853B72C11FE51004B6153 /* UIView+Animation.swift in Sources */,
@@ -469,7 +473,7 @@
 				6383EDD42C09501400CEA716 /* SearchViewController.swift in Sources */,
 				6383EDCE2C093E6800CEA716 /* MovieViewController.swift in Sources */,
 				630AF4242C060697007FF5FE /* RequestParameters.swift in Sources */,
-				635499B12C2A08F800199CD8 /* CheckStaticService.swift in Sources */,
+				635499B12C2A08F800199CD8 /* NetworkHelper.swift in Sources */,
 				63B56AAB2C060277003271A9 /* AppDelegate.swift in Sources */,
 				631153582C0E55AF00B93A77 /* User.swift in Sources */,
 				6383EDDE2C09556200CEA716 /* SearchTableViewCell.swift in Sources */,

@@ -15,18 +15,29 @@ class SearchViewController: UIViewController {
     let userData = StorageService.getUserData()
     var resultData: Array<Movie> = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         navigationController?.navigationBar.topItem?.title = "Search";
         
-        // Регистрация ячейки таблицы из Nib-файла
-        let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "SearchTableViewCell")
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PlaceholderCell")
+        if NetworkHelper.hasInternetConnection() {
+            // Регистрация ячейки таблицы из Nib-файла
+            let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
+            tableView.register(nib, forCellReuseIdentifier: "SearchTableViewCell")
+            
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PlaceholderCell")
+        } else {
+            UIViewController.showAlert(title: "No Internet Connection", message: "You don't have internet connection.", actionHandler: { _ in
+                if let tabBarController = self.tabBarController {
+                    
+                    let previousTabIndex = tabBarController.selectedIndex - 1
+                    if previousTabIndex >= 0 {
+                        tabBarController.selectedIndex = previousTabIndex
+                    }
+                }
+            })
 
-        
+        }
     }
     
 }

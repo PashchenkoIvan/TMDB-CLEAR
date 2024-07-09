@@ -24,34 +24,37 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func buttonPressed(_ sender: Any) {
-        if let username = loginTextField.text, let password = passwordTextField.text, !username.isEmpty, !password.isEmpty {
-            RequestsStaticClass.loginUser(username: username, password: password) { response in
-                switch response {
-                case .success(let result):
-                    DispatchQueue.main.async {
-                        let encoder = JSONEncoder()
-                        if let encodedData = try? encoder.encode(result) {
-                            
-                            let keychain = KeychainSwift()
-                            keychain.set(encodedData, forKey: "userData")
-                            
-                            // Создаем экземпляр TabBarController
-                            let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-                            
-                            // Переходим на TabBarController
-                            tabBarController.modalPresentationStyle = .fullScreen // Для открытия на весь экран
-                            self.present(tabBarController, animated: true, completion: nil)
+        
+        if NetworkHelper.hasInternetConnection() {
+            if let username = loginTextField.text, let password = passwordTextField.text, !username.isEmpty, !password.isEmpty {
+                RequestsStaticClass.loginUser(username: username, password: password) { response in
+                    switch response {
+                    case .success(let result):
+                        DispatchQueue.main.async {
+                            let encoder = JSONEncoder()
+                            if let encodedData = try? encoder.encode(result) {
+                                
+                                let keychain = KeychainSwift()
+                                keychain.set(encodedData, forKey: "userData")
+                                
+                                // Создаем экземпляр TabBarController
+                                let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+                                
+                                // Переходим на TabBarController
+                                tabBarController.modalPresentationStyle = .fullScreen // Для открытия на весь экран
+                                self.present(tabBarController, animated: true, completion: nil)
+                            }
                         }
+                    case .failure(let error):
+                        print(error)
                     }
-                case .failure(let error):
-                    print(error)
                 }
+            } else {
+                print("Enter login or/and password")
             }
         } else {
-            print("Enter login or/and password")
+            UIViewController.showAlert(title: "No Internet Connection", message: "You don't have internet connection.")
         }
     }
-
-    
 }
 
